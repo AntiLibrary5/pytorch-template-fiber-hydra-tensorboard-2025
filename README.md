@@ -34,7 +34,7 @@ logging (**Loguru**+**TensorBoard**), and hardware-agnostic training (**Lightnin
 > **Note**: This section provides detailed background and motivation. If you're just looking to get started quickly, you can skip to the [Quick Start](#quick-start) section. If you're interested in why this template exists and what problems it solves, expand below.
 
 <details>
-<summary>🤔 Click to expand the motivation and background</summary>
+<summary>🤔Click to expand the motivation and background🤔</summary>
 
 There are plenty of deep learning templates out there—so why this one?  
 
@@ -178,7 +178,7 @@ python src/infer.py --experiment <exp_name> data.image_type=tif
    defaults:
      - experiment: default
      - training: default
-     - model: base
+     - model: base # or complex (see configs/model)
      - data: default
    ```
 
@@ -186,17 +186,32 @@ python src/infer.py --experiment <exp_name> data.image_type=tif
    ```yaml
    # configs/experiment/default.yaml
    exp_name: "unet_baseline"
-   description: "Base UNet with MSE loss"
+   resume: false
    ```
 
 3. **Model Zoo**  
    Switch architectures via config:
    ```yaml
-   # configs/model/unet.yaml
-   _target_: src.model.unet.UNet
+   # configs/model/base.yaml
+   _target_: src.model.base.UNet
    in_channels: 1
    out_channels: 1
    initial_features: 64
+   ```
+
+4. **Training Settings**
+   ```yaml
+   epochs: 500
+   lr: 0.0001
+   ckpt_frequency: 50  # Save checkpoint every 5 epochs
+   resume_from_last: false  # Path to checkpoint to resume from
+   accelerator: "auto"  # Lightning Fabric: "cpu", "gpu", "tpu", or "auto"
+   devices: "auto"  # Number of devices (e.g., 2 for 2 GPUs)
+   precision: "32-true"  # Mixed precision: "16-mixed", "bf16-mixed", or "32-true"
+
+   logging:
+       epoch_frequency: 1
+       image_frequency: 50  # Log images every epoch
    ```
 
 ### Creating New Configurations
