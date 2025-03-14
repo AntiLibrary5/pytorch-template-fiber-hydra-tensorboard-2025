@@ -15,17 +15,19 @@ logging (**Loguru**+**TensorBoard**), and hardware-agnostic training (**Lightnin
 
 ## Table of Contents
 - [Why This Template?](#why-this-template)
-- [Requirements](#requirements)
-- [Project Structure](#project-structure)
-- [Usage Guide](#usage-guide)
+- [How to use](#how-to-use)
+  - [Project Structure](#project-structure)
+  - [Environment Setup](#environment-setup)
   - [Training](#training)
   - [Inference](#inference)
-  - [Configuration Management](#configuration-management)
-  - [Logging and Visualization](#logging-and-visualization)
-- [Example Task](#example-task-image-reconstruction)
+- [Configuration Management](#configuration-management)
+  - [Core Concepts](#core-concepts)
+  - [Creating New Configurations](#creating-new-configurations)
+- [Logging and Visualization](#logging-and-visualization)
+  - [Message Logging](#message-logging)
+  - [Tensorboard Logging](#tensorboard-logging)
+- [Toy Example](#toy-example-image-reconstruction)
 - [Extending the Template](#extending-the-template)
-- [Contributing](#contributing)
-- [Star History](#star-history)
 - [License](#license)
 
 ## Why This Template?
@@ -85,11 +87,11 @@ This template is designed to **keep things simple, flexible, and experiment-focu
 </details>
 
 # How to use
-USe this mainly for the config management and logging features. A toy example of a reconstruction autoencoder for a random image
+Use this mainly for the config management and logging features. A toy example of a reconstruction autoencoder for a random image
 to show it works and show where the dataset, model, loss optimizers, training/validation/inference logic, vis, io, other utils could go.
 You're in control.
 
-## Project Structure
+### Project Structure
 ```
 ├── configs/                # Configuration files
 │   ├── config.yaml         # Main configuration
@@ -113,8 +115,6 @@ You're in control.
 └── requirements.txt        # Dependencies
 ```
 
-## Usage Guide
-
 ### Environment Setup
 
 Set up your own environment, but to you need atleast mentioned in the provided `requirements.txt` file to use the features here and
@@ -126,8 +126,7 @@ conda activate minimal
 pip install --force-reinstall -r requirements.txt
 ```
 
-## Usage
-### 1. Training a Model
+### Training
 
 To train a model with the default configuration:
 
@@ -157,7 +156,7 @@ python src/train.py training.devices=2 training.accelerator="gpu"
 python src/train.py training.precision="16-mixed"
 ```
 
-### 2. Inference
+### Inference
 ```bash
 python src/infer.py --experiment <exp_name>
 ```
@@ -274,7 +273,7 @@ To view TensorBoard logs:
 tensorboard --logdir model_save/my_experiment/tb
 ```
 
-## Example Task: Image Reconstruction
+## Toy Example: Image Reconstruction
 
 **Implemented Components**:
 - UNet architecture with configurable depth/features
