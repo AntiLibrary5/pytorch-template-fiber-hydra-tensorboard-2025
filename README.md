@@ -271,6 +271,11 @@ This template is designed to be extended for your specific needs:
 - Look at the lightweight toy example for what the workflow could be
 - Easy (relatively easy/easier) to open it and adapt for your use case (hopefully)
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=AntiLibrary5/pytorch-template-fiber-hydra-tensorboard-2025&type=Date)](https://www.star-history.com/#AntiLibrary5/pytorch-template-fiber-hydra-tensorboard-2025&Date)
+
+
 ## License
 ```
 MIT License
