@@ -1,0 +1,72 @@
+# Dataset folders
+artefacts/
+model_save/
+
+# Model checkpoints and saved models
+
+# Common Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+.env
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# ML specific
+*.h5
+*.pth
+*.onnx
+*.pb
+*.ckpt
+*.pt
+wandb/
+logs/
+runs/
+tensorboard/
+
+# Large media files
+*.nii.gz
+*.nii
+*.dcm
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.avi
+*.mov
+
+# Compressed files
+*.zip
+*.tar
+*.gz
+*.7z

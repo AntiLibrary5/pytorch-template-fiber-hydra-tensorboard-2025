@@ -1,0 +1,22 @@
+# Dataset configuration
+image_size: 64
+image_type: png
+num_samples: 10  # Number of samples in the dataset
+
+# Dataloader configuration
+loader:
+  train:
+    batch_size: 2
+    shuffle: False
+    num_workers: 0
+    pin_memory: True
+  val:
+    batch_size: 1
+    shuffle: False
+    num_workers: 0
+    pin_memory: True
+  test:
+    batch_size: 1
+    shuffle: False
+    num_workers: 0
+    pin_memory: True

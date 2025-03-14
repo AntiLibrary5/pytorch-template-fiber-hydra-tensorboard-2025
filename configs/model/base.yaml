@@ -1,0 +1,3 @@
+_target_: src.model.base.UNet  # Fully qualified path to the simple UNet class
+in_channels: 1
+latent_dim: 16

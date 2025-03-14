@@ -1,0 +1,39 @@
+experiment:
+  exp_name: debug
+  resume: false
+training:
+  epochs: 2000
+  lr: 0.0001
+  ckpt_frequency: 500
+  resume_from_last: false
+  accelerator: auto
+  devices: auto
+  precision: 32-true
+  logging:
+    epoch_frequency: 50
+    image_frequency: 50
+inference:
+  max_batches: 1
+model:
+  _target_: src.model.base.UNet
+  in_channels: 1
+  latent_dim: 16
+data:
+  image_size: 64
+  num_samples: 10
+  loader:
+    train:
+      batch_size: 2
+      shuffle: false
+      num_workers: 0
+      pin_memory: true
+    val:
+      batch_size: 1
+      shuffle: false
+      num_workers: 0
+      pin_memory: true
+    test:
+      batch_size: 1
+      shuffle: false
+      num_workers: 0
+      pin_memory: true

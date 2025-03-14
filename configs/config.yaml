@@ -1,0 +1,12 @@
+defaults:
+  - _self_
+  - experiment: default
+  - training: default
+  - inference: default
+  - model: base  # or complex (see configs/model)
+  - data: default
+  - override hydra/job_logging: disabled
+
+hydra:
+  run:
+    dir: ./model_save/${experiment.exp_name}
