@@ -1,39 +1,88 @@
 # Deep Learning Project Template
+[![python](https://img.shields.io/badge/-Python_3.8_%7C_3.9_%7C_3.10-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![pytorch](https://img.shields.io/badge/PyTorch_2.0+-ee4c2c?logo=pytorch&logoColor=white)](https://pytorch.org/get-started/locally/)
+[![lightning](https://img.shields.io/badge/-Lightning_2.0+-792ee5?logo=pytorchlightning&logoColor=white)](https://pytorchlightning.ai/)
+[![hydra](https://img.shields.io/badge/Config-Hydra_1.3-89b8cd)](https://hydra.cc/)
+[![tensorboard](https://img.shields.io/badge/Logging-TensorBoard-orange?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/tensorboard)
+[![loguru](https://img.shields.io/badge/Logging-Loguru_0.7-blue?logo=python&logoColor=white)](https://loguru.readthedocs.io/)
+
 A lightweight template for **PyTorch** based deep learning projects with main features of configuration management (**Hydra**), 
-logging (**Loguru**+**TensorBoard**), and 
-hardware-agnostic training (**Lightning Fiber**). Designed for rapid experimentation while enforcing best practices.
+logging (**Loguru**+**TensorBoard**), and hardware-agnostic training (**Lightning Fiber**). Designed for rapid experimentation while enforcing best practices.
 
-# Why another one?
-There exist many templates already. Why this? I've worked as a research engineer in computer vision for 4 years and
-my usual workflow is to do literature review on sota for the given topic, implement them or use their codebase to make it
-work/adjust it on a specific company/lab data/problem. Some codebases are good, some are bad. But with no one standard,
-it takes a lot of energy to understand the codeflow to be able to use it. What I mainly want is the dataset processing,
-the model, the loss and the training logic. Rest its easier to work with something that is more familiar to me for experiments.
-SO usually I end up rewriting their implementation stripping it down to minimum. What then is a repetitive flow to implement 
-is having nice config management for parameters for different experiments, having nice (free) logging for tracking,
-and smooth multi gpu runs at times. For the model, data, training logic, these can be plugged in easily.
+![GitHub Repo stars](https://img.shields.io/github/stars/AntiLibrary5/pytorch-template-fiber-hydra-tensorboard-2025?style=social)
+![GitHub forks](https://img.shields.io/github/forks/AntiLibrary5/pytorch-template-fiber-hydra-tensorboard-2025?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/AntiLibrary5/pytorch-template-fiber-hydra-tensorboard-2025?style=social)
 
+## Table of Contents
+- [Why This Template?](#why-this-template)
+- [Requirements](#requirements)
+- [Project Structure](#project-structure)
+- [Usage Guide](#usage-guide)
+  - [Training](#training)
+  - [Inference](#inference)
+  - [Configuration Management](#configuration-management)
+  - [Logging and Visualization](#logging-and-visualization)
+- [Example Task](#example-task-image-reconstruction)
+- [Extending the Template](#extending-the-template)
+- [Contributing](#contributing)
+- [Star History](#star-history)
+- [License](#license)
 
-### **But we already have other nice templates?**
-I checked them all. They are scary to modify. Overkill so to speak, atleast for me. I'm like I have my model, data, training logic,
-give me the rest. But the rest tends to be too much, difficult to adapt. Killing the earlier mentioned point of energy requirement
-to adapt. What I mainly need again and again is:
-1. I will have one or several models and training settings. I want to run different experiments and track them 
-to see whats working and whats not and adapt. I will want to run inference using those settings easily. I want to switch settings fast and easy.
-2. I want to see whats happening during training to get a feel early on whats going on. I want good logging (for free).
-3. I dont want to cuda this cpu that, use a different accelerator/hardware/precision
+## Why This Template?
+> **Note**: This section provides detailed background and motivation. If you're just looking to get started quickly, you can skip to the [Quick Start](#quick-start) section. If you're interested in why this template exists and what problems it solves, expand below.
 
-### **Previously**
-- You have lightning templates which is too much abstraction == less flexibility without the learning curve for lightning for me 
-- You have templates but they are heavy and come with their own learning curve so to speak.
+<details>
+<summary>🤔 Click to expand the motivation and background</summary>
 
-### **So here you get**
-- **Configuration Management**: Hierarchical configuration using Hydra
-- **Experiment Tracking**: Automatic saving and loading of experiment configurations
-- **Logging**: Comprehensive logging to both console and files using Loguru
-- **Visualization**: TensorBoard integration for metrics, images, and model graphs
-- **Hardware Agnostic**: We use Lightning Fiber >> Pytorch lightning when it comes to tradeoff of boilerplate vs adaptability
-- **Lean Structure**: For quick start and adaptability
+There are plenty of deep learning templates out there—so why this one?  
+
+As a research engineer in computer vision for over four years, my workflow has consistently involved:  
+- Reviewing SOTA papers  
+- Implementing papers or adapting their existing codebases to specific datasets and problems  
+
+However, existing implementations often come with excessive complexity. Each codebase has a different structure, making it time-consuming to adapt. In reality, I only need the essentials:  
+- **Dataset processing**  
+- **Model architecture**  
+- **Loss functions**  
+- **Training logic**  
+- ...
+
+Everything else should be familiar and easy to modify for experiments. I often end up stripping down implementations to the bare minimum and rewriting them for:  
+- **Configurable experiment management**  
+- **Effective logging (preferably free)**  
+- **Seamless multi-GPU support**  
+
+---
+
+### Why Not Use Existing Templates?  
+
+Yes, there are other well-structured templates, but:  
+- **They are over-engineered** → Hard to modify, too much boilerplate  
+- **They impose strict frameworks** → Require learning Lightning or other abstractions  
+- **They add unnecessary complexity** → I just need a simple, adaptable structure  
+
+What I need is simple:  
+✅ **Run multiple experiments with different models & settings**  
+✅ **Quickly switch configurations**  
+✅ **Track experiments efficiently**  
+✅ **Easy inference with saved settings**  
+✅ **Monitor training behavior with intuitisve logging**  
+✅ **No CUDA/CPU/hardware headaches**  
+
+---
+
+### What This Template Offers  
+
+- **Configuration Management** → Hierarchical configs with Hydra  
+- **Experiment Tracking** → Auto-save & load experiment settings  
+- **Logging** → Console & file logging with Loguru  
+- **Visualization** → TensorBoard support for metrics, images, and models  
+- **Hardware Agnostic** → Lightning Fabric (better flexibility than PyTorch Lightning)  
+- **Lean & Adaptable** → No unnecessary overhead, quick to modify  
+
+This template is designed to **keep things simple, flexible, and experiment-focused**—without unnecessary complexity.  
+
+</details>
 
 # How to use
 USe this mainly for the config management and logging features. A toy example of a reconstruction autoencoder for a random image
@@ -64,7 +113,7 @@ You're in control.
 └── requirements.txt        # Dependencies
 ```
 
-## Getting Started
+## Usage Guide
 
 ### Environment Setup
 
